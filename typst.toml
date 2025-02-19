@@ -1,4 +1,8 @@
 [package]
 name = "rtu-mirea-report"
 version = "0.1.0"
-entrypoint = "lib.typ"
+entrypoint = "template.typ"
+
+[template]
+path = "template"
+entrypoint = "template.typ"

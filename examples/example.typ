@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../template.typ": *
 
 #show: project.with(
   title: "Отчёт по практической работе №1",
@@ -23,5 +23,5 @@
 Здесь можно увидеть как добавить листинг программы из файла
 #listing(
   caption: "asd",
-  file: "script.go",
+  file: "./examples/script.go",
 )
