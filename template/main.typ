@@ -161,7 +161,7 @@
   set align(center)
   set par(spacing: 2mm)
 
-  image("./images/logo.png", width: 20mm)
+  image("../images/logo.png", width: 20mm)
 
   [
     #upper("Минобрнауки России\n")

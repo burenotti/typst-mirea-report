@@ -5,4 +5,4 @@ entrypoint = "template.typ"
 
 [template]
 path = "template"
-entrypoint = "template.typ"
+entrypoint = "main.typ"

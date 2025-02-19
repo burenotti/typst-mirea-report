@@ -1,4 +1,4 @@
-#import "../template.typ": *
+#import "../template/main.typ": *
 
 #show: project.with(
   title: "Отчёт по практической работе №1",
