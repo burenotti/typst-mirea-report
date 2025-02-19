@@ -63,12 +63,11 @@
 
 
 #let __table_impl(caption: str, columns: (), head: (), ..body) = context {
-  let column-amount = if type(columns) == int {
-    columns
-  } else if type(columns) == array {
-    columns.len()
-  } else {
-    1
+
+  let column-amount = 1
+  
+  if type(columns) == array {
+    column-amount = columns.len()
   }
 
   let table-counter = counter("table")
@@ -87,7 +86,7 @@
     }
   }
 
-
+  set align(left)
   block(
     inset: (left: -13mm),
     outset: (left: 13mm),
@@ -99,7 +98,11 @@
       stroke: black,
       inset: 5pt,
       table.header(
-        table.cell(stroke: none, colspan: column-amount)[header <table-header>],
+        table.cell(
+          inset: (left: 0mm),
+          stroke: none,
+          colspan: column-amount,
+        )[header <table-header>],
         ..head,
       ),
       ..body,
@@ -113,7 +116,7 @@
     caption: caption,
     supplement: "Рисунок",
     align(
-      center, 
+      center,
       block(width: 100%)[
         #image(path, width: width, alt: caption)
       ],
@@ -121,7 +124,15 @@
   )
 }
 
-#let mytable(caption: str, columns: (), head: (), ..body) = {
+#let mytable(caption: [], columns: auto, head: (), ..body) = {
+  if columns == auto and head != none {
+    columns = head.len()
+  }
+
+  if type(columns) == int {
+    columns = range(0, columns).map(i => 1fr)
+  }
+
   figure(
     kind: "table",
     supplement: "Таблица",
@@ -142,7 +153,6 @@
   lecturer: str,
   body,
 ) = {
-  
   let completion_text = "Выполнил студент группы"
 
   if authors.len() > 1 {
