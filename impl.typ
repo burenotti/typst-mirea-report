@@ -284,9 +284,9 @@
       #text(size: 12pt, it.caption)
     ]
   }
-
-
+  
   if add_toc {
+    set align(center);
     outline(depth: 3, indent: false)
     pagebreak()
   }
