@@ -9,6 +9,10 @@
     "editor.defaultFormatter": "myriad-dreamin.tinymist"
   },
   "tinymist.outputPath": "$root/output/$name",
+  "tinymist.formatterMode": "typstyle",
+  "tinymist.fontPaths": [
+    "$root/fonts",
+  ],
   "[json]": {
     "editor.quickSuggestions": {
       "strings": true

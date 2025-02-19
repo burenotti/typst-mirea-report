@@ -1,4 +1,3 @@
-
 #let __listing_impl(caption: str, body) = context {
   let listing-counter = counter("listing")
   listing-counter.step()
@@ -29,7 +28,7 @@
       table.cell(
         inset: (left: 3mm),
         stroke: black,
-      )[#par(hanging-indent: 0mm, leading: 4pt)[#raw(body)]],
+      )[#par(hanging-indent: 0mm, leading: 4pt)[#body]],
     )
   ]
 }
@@ -47,7 +46,7 @@
     }
 
     lines = lines.slice(from - 1, to)
-    body = lines.join("\n")
+    body = raw(lines.join("\n"))
   }
 
   figure(
@@ -111,9 +110,14 @@
 #let picture(path: str, caption: content, width: 100%) = {
   figure(
     kind: "picture",
-    image(path, width: width),
     caption: caption,
     supplement: "Рисунок",
+    align(
+      center, 
+      block(width: 100%)[
+        #image(path, width: width, alt: caption)
+      ],
+    ),
   )
 }
 
@@ -138,6 +142,7 @@
   lecturer: str,
   body,
 ) = {
+  
   let completion_text = "Выполнил студент группы"
 
   if authors.len() > 1 {
@@ -161,7 +166,7 @@
   set align(center)
   set par(spacing: 2mm)
 
-  image("./logo.png", width: 20mm)
+  image("./resources/logo.png", width: 20mm)
 
   [
     #upper("Минобрнауки России\n")
@@ -229,7 +234,6 @@
 
   set text(size: 14pt)
   set align(start)
-  set page(numbering: "1")
 
   set text(hyphenate: false)
 
@@ -273,9 +277,11 @@
 
 
   if add_toc {
-    outline(depth: 3, indent: true)
+    outline(depth: 3, indent: false)
     pagebreak()
   }
+
+  set page(numbering: "1")
 
   // first-line-indent не работает для первого параграфа,
   // поэтому здесь этот костыль
