@@ -281,7 +281,7 @@
 
   if add_toc {
     set align(center)
-    outline(depth: 3, indent: false)
+    outline(depth: 3, indent: 0em)
     pagebreak()
   }
 
