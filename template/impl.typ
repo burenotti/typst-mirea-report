@@ -28,14 +28,14 @@
       table.cell(
         inset: (left: 3mm),
         stroke: black,
-      )[#par(hanging-indent: 0mm, leading: 4pt)[#body]],
+      )[#par(hanging-indent: 0mm, leading: 4pt, justify: false)[#body]],
     )
   ]
 }
 
 #let listing(caption: str, body: none, file: none, from: none, to: none) = {
   if body == none {
-    body = read(file)
+    body = read("../" + file)
     let lines = body.split("\n")
 
     if from == none {
@@ -63,9 +63,8 @@
 
 
 #let __table_impl(caption: str, columns: (), head: (), ..body) = context {
-
   let column-amount = 1
-  
+
   if type(columns) == array {
     column-amount = columns.len()
   }
@@ -115,10 +114,11 @@
     kind: "picture",
     caption: caption,
     supplement: "Рисунок",
+
     align(
       center,
       block(width: 100%)[
-        #image(path, width: width, alt: caption)
+        #image("../" + path, width: width)
       ],
     ),
   )
@@ -176,7 +176,7 @@
   set align(center)
   set par(spacing: 2mm)
 
-  image("./resources/logo.png", width: 20mm)
+  image("./logo.png", width: 20mm)
 
   [
     #upper("Минобрнауки России\n")
@@ -266,27 +266,21 @@
     figure.body
   }
 
-
   show figure.where(kind: "picture"): it => {
-    par(
-      first-line-indent: -13mm,
-      hanging-indent: 0mm,
-      spacing: 8pt,
+    block(
+      inset: (left: -13mm),
+      outset: (left: 13mm),
+      breakable: false,
     )[
       #align(start)[
-        #block(
-          inset: (left: -13mm),
-          outset: (left: 13mm),
-        )[
-          #it.body
-        ]
+        #it.body
       ]
       #text(size: 12pt, it.caption)
     ]
   }
-  
+
   if add_toc {
-    set align(center);
+    set align(center)
     outline(depth: 3, indent: false)
     pagebreak()
   }

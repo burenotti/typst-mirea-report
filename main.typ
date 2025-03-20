@@ -1,4 +1,4 @@
-#import "template.typ": *
+#import "template/template.typ": *
 
 #show: project.with(
   title: "Отчёт по практической работе №1",
@@ -24,7 +24,7 @@
 
 #picture(
   caption: "Так называемый мем",
-  path: "./resources/picture.jpg",
+  path: "./docs/picture.jpg",
   width: 50%,
 ) <example-picture>
 
@@ -50,7 +50,7 @@
 Здесь можно увидеть как добавить листинг программы из файла
 #listing(
   caption: "Некоторая прогрмма на языке python",
-  file: "resources/script.py",
+  file: "docs/script.py",
 )
 
 === Частичное цитирование файла
@@ -58,7 +58,7 @@
 На листинге #ref(<code-partial>, supplement: "листинге") можно увидеть, каким образом вставить только часть содежримого файла
 #listing(
   caption: "Абстрактная функция square",
-  file: "resources/script.py",
+  file: "docs/script.py",
   from: 11,
   to: 21,
 ) <code-partial>

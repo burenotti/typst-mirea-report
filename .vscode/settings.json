@@ -6,14 +6,14 @@
     "editor.tabSize": 2,
     "editor.inlayHints.enabled": "off",
     "editor.formatOnSaveMode": "modifications",
-    "editor.defaultFormatter": "myriad-dreamin.tinymist"
+    "editor.defaultFormatter": "myriad-dreamin.tinymist",
   },
   "tinymist.outputPath": "$root/output/$name",
   "tinymist.formatterMode": "typstyle",
   "tinymist.fontPaths": [
     "$root/fonts",
   ],
-  "tinymist.exportPdf": "onSave",
+  "tinymist.exportPdf": "never",
   "[json]": {
     "editor.quickSuggestions": {
       "strings": true

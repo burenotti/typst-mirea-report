@@ -1,0 +1,43 @@
+on:
+  push: 
+    branches:
+      - main
+      - master
+    tags: 
+      - '*'
+
+permissions: 
+  contents: write
+
+jobs:
+  build:
+    outputs:
+      artifact_url: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup repository
+        uses: actions/checkout@v4
+      
+      - name: Install typst
+        run: |
+          sudo snap install typst
+      
+      - name: Build PDFs
+        run: |
+          mkdir -p output/
+          bash .vscode/compile_all.sh "$(pwd)"
+      
+      - name: Create release tag
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          echo "TAG_NAME=${REF_NAME#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Create github release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: PDF Release (${{ env.TAG_NAME }})
+          tag_name: ${{ env.TAG_NAME }}
+          files: output/*.pdf
