@@ -8,7 +8,7 @@
 
 Создаем репозиторий на гитхабе из шаблона (create a new repository).
 
-![Скрин](resources/use_template.png)
+![Скрин](docs/use_template.png)
 
 После этого клонируем свой репозиторий. В нем можно удалить папки `docs/` и `examples/`.
 
@@ -22,7 +22,7 @@
 Это можно сделать запустив команду сборки `build-reports`:
 
 - Тыкаем Ctrl+Shift+P (на mac Сmd+Shift+P). Выбираем действие как на скрине
-![Скрин](resources/run_build_task.png)
+![Скрин](docs/run_build_task.png)
 - Выбираем `build-reports`
 - Profit! Собранные пдфки в `output/`
 
